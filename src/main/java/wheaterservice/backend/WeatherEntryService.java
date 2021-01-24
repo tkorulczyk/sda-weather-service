@@ -3,6 +3,7 @@ package wheaterservice.backend;
 import java.util.List;
 
 public class WeatherEntryService {
+
     private WeatherEntryRepository weatherEntryRepository;
 
     public WeatherEntryService(WeatherEntryRepository weatherEntryRepository) {
@@ -16,10 +17,4 @@ public class WeatherEntryService {
     public List<WeatherEntry> readWeatherLocations() {
         return null;
     }
-
-//    public WeatherEntry(String locationName) {
-//        return null;
-//
-//    }
-
 }

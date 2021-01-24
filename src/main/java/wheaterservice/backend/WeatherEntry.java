@@ -13,9 +13,6 @@ public class WeatherEntry {
     private Long id;
     private String locationName;
 
-
     public WeatherEntry() {
     }
-
-
 }

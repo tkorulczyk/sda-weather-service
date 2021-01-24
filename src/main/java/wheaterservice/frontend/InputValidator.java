@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputValidator {
+
     private Scanner scanner = new Scanner(System.in);
 
     int retrievesInteger() {
@@ -18,7 +19,6 @@ public class InputValidator {
         }
     }
 
-
     String retrievesString() {
         while (true) {
             try {
@@ -26,13 +26,7 @@ public class InputValidator {
             } catch (InputMismatchException e) {
                 scanner.reset();
                 scanner.nextLine();
-
             }
         }
     }
-
-//    private String validateLatitude(retrievesString()) {
-//
-//    }
-
 }
