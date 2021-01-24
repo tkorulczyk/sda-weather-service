@@ -1,5 +1,7 @@
 package wheaterservice.backend;
 
+import java.util.List;
+
 public class WeatherEntryController {
     private final WeatherEntryService weatherEntryService;
 
@@ -9,11 +11,12 @@ public class WeatherEntryController {
 
 
     public String createNewWeatherLocation(String countryName, String regionName, String locationName, String latitude) {
-
-        return null;
+        WeatherEntry newWeatherEntry = weatherEntryService.createNewWeatherEntry(countryName,regionName,locationName,latitude);
+        return newWeatherEntry.toString();
     }
 
     public String readWeatherLocation() {
-        return null;
+       List<WeatherEntry> weatherLocations= weatherEntryService.readWeatherLocations();
+        return weatherLocations.toString();
     }
 }
