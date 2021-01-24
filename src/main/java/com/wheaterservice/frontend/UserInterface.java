@@ -61,16 +61,19 @@ public class UserInterface {
         String latitude = inputValidator.retrievesString();
         System.out.println(PROVIDE_LONGITUDE);
         String longitude = inputValidator.retrievesString();
+        System.out.println();
         String weatherEntry = locationController.createNewLocation(countryName, regionName, locationName, latitude,longitude);
     }
 
     private void readWeatherEntries() {
         String readWeatherLocation = locationController.readLocations();
-        System.out.println("Retreived Locations " + readWeatherLocation);
+        System.out.println();
+        System.out.println("Retreived Locations:\n " + readWeatherLocation);
     }
 
     private void obtainWeatherForecast() {
         String obtainWeatherLocation = locationController.obtainLocation();
-        System.out.println("Obtained Locations " + obtainWeatherLocation);
+        System.out.println();
+        System.out.println("Obtained Locations: " + obtainWeatherLocation);
     }
 }

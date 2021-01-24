@@ -16,8 +16,8 @@ public class LocationController {
     }
 
     public String readLocations() {
-        List<Location> Locations = locationService.readLocations();
-        return Locations.toString();
+        List<Location> locations = locationService.readLocations();
+        return locations.toString();
     }
 
     public String obtainLocation() {
