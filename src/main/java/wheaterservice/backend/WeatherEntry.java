@@ -1,4 +1,5 @@
 package wheaterservice.backend;
 
-public class EntryController {
+public class WeatherEntry {
+
 }

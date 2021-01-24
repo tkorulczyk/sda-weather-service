@@ -1,4 +1,4 @@
 package wheaterservice.backend;
 
-public class Entry {
+public class WeatherEntryService {
 }
