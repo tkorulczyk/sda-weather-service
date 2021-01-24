@@ -8,6 +8,9 @@ public class UserInterface {
 
     private  final String CLOSED_APP_MESSAGE = "\nThank you for your time! \n" + "Good bye!";
     private final String PROVIDE_LOCATION_NAME = "Please provide location name";
+    private final String PROVIDE_REGION_NAME = "Please provide region name";
+    private final String PROVIDE_COUNTY_NAME = "Please provide country name";
+    private final String PROVIDE_LATITUDE = "Please provide latitude of the location";
     private final String INVITATION_MESSAGE = "\n" +
             "========================================================== \n" +
             "Welcome to the ⌂ weather service ⌂, what would you like to do? \n" +
@@ -26,9 +29,10 @@ public class UserInterface {
 
 
     void showInitialMenu() {
+
+
         while(true) {
             System.out.println(INVITATION_MESSAGE);
-
             int userInput = inputValidator.retrievesInteger();
 
             switch (userInput) {
@@ -51,17 +55,24 @@ public class UserInterface {
     }
 
     private void addNewLocation() {
+        System.out.println(PROVIDE_COUNTY_NAME);
+        String countryName = inputValidator.retrievesString();
+        System.out.println(PROVIDE_REGION_NAME);
+        String regionName = inputValidator.retrievesString();
         System.out.println(PROVIDE_LOCATION_NAME);
         String locationName = inputValidator.retrievesString();
-
+        System.out.println(PROVIDE_LATITUDE);
+        String latitude = inputValidator.retrievesString();
+        String weatherEntry = weatherEntryController.createNewWeatherLocation(countryName,regionName,locationName,latitude);
     }
 
     private void readWeatherEntries() {
+        String readWeatherLocation = weatherEntryController.readWeatherLocation();
+
     }
 
     private void obtainWeatherForecast() {
     }
-
 
 
 

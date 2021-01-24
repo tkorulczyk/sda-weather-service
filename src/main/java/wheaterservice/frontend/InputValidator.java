@@ -22,7 +22,7 @@ public class InputValidator {
     String retrievesString() {
         while (true) {
             try {
-                return scanner.nextLine();
+                return scanner.next();
             } catch (InputMismatchException e) {
                 scanner.reset();
                 scanner.nextLine();
@@ -31,5 +31,8 @@ public class InputValidator {
         }
     }
 
+//    private String validateLatitude(retrievesString()) {
+//
+//    }
 
 }
