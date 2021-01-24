@@ -4,11 +4,11 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://46.242.246.21:3306/33381676_sda?serverTimezone=Europe/Warsaw</property>
         <property name="connection.username">33381676_sda</property>
-        <property name="connection.password">b%Nu@amp)pw+;TT{LqbK(9l</property>
+        <property name="connection.password">2%2}=g9+_Rb\y3t</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
         <property name="use.sql_comments">true</property>
-        <mapping class ="com.sda.hibernate.wheatherservice.entry" />
+        <mapping class ="com.sda.hibernate.wheatherservice.backend.Entry" />
     </session-factory>
 </hibernate-configuration>
