@@ -1,4 +1,4 @@
-package wheaterservice.frontend;
+package com.wheaterservice.frontend;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -20,7 +20,19 @@ public class InputValidator {
     }
 
     String retrievesString() {
-        while (true) {
+        while (true) {  // Validate using regex
+            try {
+                return scanner.next();
+            } catch (InputMismatchException e) {
+                scanner.reset();
+                scanner.nextLine();
+            }
+        }
+    }
+
+
+    String retrieveLatitudeOrLongitude() {
+        while (true) {  // Validate using regex
             try {
                 return scanner.next();
             } catch (InputMismatchException e) {

@@ -1,4 +1,4 @@
-package wheaterservice.frontend;
+package com.wheaterservice.frontend;
 
 public class Colors {
     public static final String RESET = "\u001B[0m";

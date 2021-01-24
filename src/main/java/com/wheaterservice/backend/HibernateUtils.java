@@ -1,4 +1,4 @@
-package wheaterservice.backend;
+package com.wheaterservice.backend;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
