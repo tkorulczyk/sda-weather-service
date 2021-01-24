@@ -17,7 +17,7 @@ public class LocationService {
     }
 
     public List<Location> readLocations() {
-        return null;
+        return locationRepository.readAllEntries();
     }
 
 

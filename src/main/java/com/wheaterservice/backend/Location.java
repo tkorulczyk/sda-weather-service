@@ -27,4 +27,16 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+        return  "\n" + "Location {" +
+                "id=" + id +
+                " | countryName='" + countryName + '\'' +
+                " | regionName='" + regionName + '\'' +
+                " | cityName='" + cityName + '\'' +
+                " | latitude='" + latitude + '\'' +
+                " | longitude='" + longitude + '\'' +
+                '}';
+    }
 }
