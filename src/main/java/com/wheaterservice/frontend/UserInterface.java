@@ -18,11 +18,11 @@ public class UserInterface {
             "========================================================== \n" +
             "Welcome to the ⌂ weather service ⌂, what would you like to do? \n" +
             "========================================================== \n" + "\n" +
-            Colors.BLUE + "1 => Add new location \n" + Colors.RESET +
-            Colors.BLUE + "2 => Read existing weather entries \n" + Colors.RESET +
-            Colors.BLUE + "3 => Obtain a weather forecast \n" + Colors.RESET +
-            Colors.RED + "4 => Close the application \n" + Colors.RESET +
-            Colors.RESET + "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ";
+            Color.BLUE + "1 => Add new location \n" + Color.RESET +
+            Color.BLUE + "2 => Read existing weather entries \n" + Color.RESET +
+            Color.BLUE + "3 => Obtain a weather forecast \n" + Color.RESET +
+            Color.RED + "4 => Close the application \n" + Color.RESET +
+            Color.RESET + "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ";
 
     public UserInterface(LocationController locationController) {
         this.locationController = locationController;
@@ -52,15 +52,15 @@ public class UserInterface {
 
     private void addNewLocation() {
         System.out.println(PROVIDE_COUNTY_NAME);
-        String countryName = inputValidator.retrievesString();
+        String countryName = inputValidator.retrieveAndValidateLocation();
         System.out.println(PROVIDE_REGION_NAME);
-        String regionName = inputValidator.retrievesString();
+        String regionName = inputValidator.retrieveAndValidateLocation();
         System.out.println(PROVIDE_LOCATION_NAME);
-        String locationName = inputValidator.retrievesString();
+        String locationName = inputValidator.retrieveAndValidateLocation();
         System.out.println(PROVIDE_LATITUDE);
-        String latitude = inputValidator.retrievesString();
+        String latitude = inputValidator.retrieveAndValidateCoordinates();
         System.out.println(PROVIDE_LONGITUDE);
-        String longitude = inputValidator.retrievesString();
+        String longitude = inputValidator.retrieveAndValidateCoordinates();
         System.out.println();
         String weatherEntry = locationController.createNewLocation(countryName, regionName, locationName, latitude,longitude);
     }
