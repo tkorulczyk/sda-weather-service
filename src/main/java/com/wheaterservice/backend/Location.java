@@ -14,13 +14,13 @@ public class Location {
     private String countryName;
     private String regionName;
     private String cityName;
-    private String latitude;
-    private String longitude;
+    private float latitude;
+    private float longitude;
 
     public Location() {
     }
 
-    public Location(String countryName, String regionName, String cityName, String latitude, String longitude) {
+    public Location(String countryName, String regionName, String cityName, float latitude, float longitude) {
         this.countryName = countryName;
         this.regionName = regionName;
         this.cityName = cityName;
