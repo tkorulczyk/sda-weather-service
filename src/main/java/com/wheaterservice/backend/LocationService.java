@@ -21,8 +21,8 @@ public class LocationService {
             throw new IllegalArgumentException("Name of Country, Region and City cannot be empty");
         }
 
-        if (!countryName.matches("[a-zA-Z]") || !regionName.matches("[a-zA-Z]")
-                || !cityName.matches("[a-zA-Z]")) {
+        if (!countryName.matches("[a-zA-Z]+") || !regionName.matches("[a-zA-Z]+")
+                || !cityName.matches("[a-zA-Z]+")) {
             throw new IllegalArgumentException("Name of Country, Region and City should be only letters");
         }
 
@@ -32,7 +32,7 @@ public class LocationService {
             flatitude = Float.parseFloat(latitudeR);
 
             if (flatitude < -90 || flatitude > 90) {
-                throw new IllegalArgumentException("Latitude value exeeded accepted ragne");
+                throw new IllegalArgumentException("Latitude value exceeded accepted range");
             }
 
         } else {
@@ -44,7 +44,7 @@ public class LocationService {
             flongitude = Float.parseFloat(longitudeR);
 
             if (flongitude < -90 || flongitude > 90) {
-                throw new IllegalArgumentException("Longitude value exeeded accepted ragne");
+                throw new IllegalArgumentException("Longitude value exceeded accepted range");
             }
         } else {
             throw new IllegalArgumentException("Longitude can only consist of numbers");
