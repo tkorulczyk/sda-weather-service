@@ -32,7 +32,7 @@ public class DatabaseInputValidator {
 
     boolean isNotCoordinateMatchesRegexPattern(String... args) {
         for (String arg : args) {
-            if (!arg.matches("-?[0-9]{1,2}[,.]?[0-9]{0,4}")) {
+            if (!arg.matches("-?[0-9]?[0-9]([,.][0-9]{0,4})?")) {
                 return true;
             }
         }
