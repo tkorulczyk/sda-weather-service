@@ -3,12 +3,13 @@ package com.wheaterservice.backend;
 import java.util.List;
 
 public class LocationService {
-    private LocationRepository locationRepository;
+    private final LocationRepository locationRepository;
     private DatabaseInputValidator dbValidator = new DatabaseInputValidator();
 
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
+
 
     public Location createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) {
 
@@ -43,6 +44,7 @@ public class LocationService {
         Location location = new Location(countryName, regionName, cityName, flatitude, flongitude);
         return locationRepository.saveLocation(location);
     }
+
 
     public List<Location> readLocations() {
         return locationRepository.readAllEntries();
