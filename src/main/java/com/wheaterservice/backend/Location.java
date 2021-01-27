@@ -28,6 +28,26 @@ public class Location {
         this.longitude = longitude;
     }
 
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public String getRegionName() {
+        return regionName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public float getLatitude() {
+        return latitude;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
     @Override
     public String toString() {
         return  "\n" + "Location {" +

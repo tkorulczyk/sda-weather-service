@@ -13,6 +13,7 @@ public class LocationRepositoryImpl implements LocationRepository {
         SessionFactory sessionFactory = HibernateUtils.getSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+
         session.persist(location);
 
         transaction.commit();

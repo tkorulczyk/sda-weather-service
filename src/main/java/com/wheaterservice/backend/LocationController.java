@@ -20,9 +20,7 @@ public class LocationController {
         return locations.toString();
     }
 
-    public String getWeatherForecast() {
-
+    public String getWeatherForecast() {    // todo move to other controller eg. WeatherController
         return locationService.getWeatherForecast();
-
     }
 }

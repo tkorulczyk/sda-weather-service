@@ -2,7 +2,6 @@ package com.wheaterservice.backend;
 
 public class DatabaseInputValidator {
 
-
     boolean isLocationParameterNull(String... args) {
         for (String arg : args) {
             if (arg == null) {

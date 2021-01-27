@@ -6,17 +6,16 @@ import com.wheaterservice.backend.httpclients.AccuWeatherClient;
 import java.util.List;
 
 public class LocationService {
+
     private LocationRepository locationRepository;
-    private DatabaseInputValidator dbValidator = new DatabaseInputValidator();
-    private AccuWeatherClient accuWeatherClient = new AccuWeatherClient(new ObjectMapper());
+    private DatabaseInputValidator dbValidator = new DatabaseInputValidator(); // todo inject by a constructor
+    private AccuWeatherClient accuWeatherClient = new AccuWeatherClient(new ObjectMapper()); // todo  move to other service eg. WeatherService
 
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
 
-
-    public Location createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) {
-
+    public Location createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) { // todo use package-scope
         if (dbValidator.isLocationParameterNull(cityName, regionName, cityName)) {
             throw new IllegalArgumentException("Name of Country, Region and City cannot be null");
         }
@@ -50,12 +49,12 @@ public class LocationService {
     }
 
 
-    public List<Location> readLocations() {
+    public List<Location> readLocations() { // todo use package-scope
         return locationRepository.readAllEntries();
     }
 
 
-    public String getWeatherForecast() {
+    public String getWeatherForecast() { // todo move to other service eg. WeatherService
 
        return accuWeatherClient.getWeatherForecast();
     }

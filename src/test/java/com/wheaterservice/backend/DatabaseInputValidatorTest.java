@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseInputValidatorTest {
@@ -16,19 +17,44 @@ class DatabaseInputValidatorTest {
 
 
     @Test
-    void thatLocationParameterIsNull() {
+    void thatLocationParameterIsNull() { // todo action_criteria_result -> isLocationParameterNull_whenPassedParamIsNull_returnsTrue
         // when
-        String str = null;
+        // String str = null;
         // then
-        Assertions.assertNotNull(databaseInputValidator.isLocationParameterNull(str));
+        // Assertions.assertNotNull(databaseInputValidator.isLocationParameterNull(str));
+
+        // todo
+        //  given - data preparation
+        //  then - perform an action
+        //  then - assertions
+
+        // given
+        String arg = null;
+
+        // when
+        boolean result = databaseInputValidator.isLocationParameterNull(arg);
+
+        // then
+        assertThat(result).isTrue();
     }
 
     @Test
-    void thatLocationParameterIsBlank() { // I don't know how to test if parameter is blank
+    void thatLocationParameterIsBlank() { // todo isLocationParameterBlank_whenPassedParamContainsWhitespaces_returnsTrue
         // when
-        String str = " ";
+        // String str = " ";
         // then
-     //   Assertions.assert(databaseInputValidator.isLocationParameterBlank(str));
+        //   Assertions.assert(databaseInputValidator.isLocationParameterBlank(str));
+
+        // given
+        String arg = " ";
+
+        // when
+        boolean result = databaseInputValidator.isLocationParameterBlank(arg);
+
+        // then
+        assertThat(result).isTrue();
+
+        // todo adjust other tests
     }
 
 
@@ -41,7 +67,7 @@ class DatabaseInputValidatorTest {
         // when
         String str = "3231xc";
         // then
-           Assertions.assertTrue(databaseInputValidator.isNotLocationMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLocationMatchesRegexPattern(str));
     }
 
     @Test
@@ -131,5 +157,4 @@ class DatabaseInputValidatorTest {
         // then
         Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
     }
-
 }
