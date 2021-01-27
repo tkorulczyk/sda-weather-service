@@ -12,6 +12,8 @@ public class LocationService {
     private AccuWeatherClient accuWeatherClient = new AccuWeatherClient(new ObjectMapper());
 
 
+    private final LocationRepository locationRepository;
+    private DatabaseInputValidator dbValidator = new DatabaseInputValidator();
 
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
@@ -63,4 +65,5 @@ public class LocationService {
        return accuWeatherClient.getWeatherForecast();
     }
 }
+
 
