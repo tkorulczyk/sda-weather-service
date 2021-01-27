@@ -72,8 +72,22 @@ public class UserInterface {
     }
 
     private void obtainWeatherForecast() {
-        String obtainWeatherLocation = locationController.obtainLocation();
+        showWeatherForecastMenu();
+        String obtainWeatherLocation = locationController.getWeatherForecast();
         System.out.println();
-        System.out.println("Obtained Locations: " + obtainWeatherLocation);
+        System.out.println(obtainWeatherLocation);
+    }
+
+
+    private void showWeatherForecastMenu() {
+            System.out.println(PROVIDE_LOCATION_NAME);
+            String locationName = inputValidator.retrievesString();
+            System.out.println("Provide language");
+            String latitude = inputValidator.retrievesString();
+            System.out.println("Provide weather time range unit");
+            String longitude = inputValidator.retrievesString();
+            System.out.println();
+   //         String weatherEntry = locationController.createNewLocation(locationName, latitude,longitude);
+
     }
 }

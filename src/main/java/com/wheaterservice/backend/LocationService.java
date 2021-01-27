@@ -1,9 +1,15 @@
 package com.wheaterservice.backend;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wheaterservice.backend.httpclients.AccuWeatherClient;
+
 import java.util.List;
 
 public class LocationService {
     private LocationRepository locationRepository;
+    private AccuWeatherClient accuWeatherClient = new AccuWeatherClient(new ObjectMapper());
+
+
 
     public LocationService(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
@@ -21,4 +27,8 @@ public class LocationService {
     }
 
 
+    public String getWeatherForecast() {
+
+       return accuWeatherClient.getWeatherForecast();
+    }
 }

@@ -20,7 +20,9 @@ public class LocationController {
         return locations.toString();
     }
 
-    public String obtainLocation() {
-        return null;
+    public String getWeatherForecast() {
+
+        return locationService.getWeatherForecast();
+
     }
 }
