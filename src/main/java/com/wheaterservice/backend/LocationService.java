@@ -1,18 +1,16 @@
 package com.wheaterservice.backend;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wheaterservice.backend.httpclients.AccuWeatherClient;
-
 import java.util.List;
 
 public class LocationService {
 
     private LocationRepository locationRepository;
-    private DatabaseInputValidator dbValidator = new DatabaseInputValidator(); // todo inject by a constructor
-    private AccuWeatherClient accuWeatherClient = new AccuWeatherClient(new ObjectMapper()); // todo  move to other service eg. WeatherService
+    private DatabaseInputValidator dbValidator;
 
-    public LocationService(LocationRepository locationRepository) {
+
+    public LocationService(LocationRepository locationRepository, DatabaseInputValidator dbValidator) {
         this.locationRepository = locationRepository;
+        this.dbValidator = dbValidator;
     }
 
     public Location createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) { // todo use package-scope
@@ -49,15 +47,12 @@ public class LocationService {
     }
 
 
-    public List<Location> readLocations() { // todo use package-scope
+     List<Location> readLocations() {
         return locationRepository.readAllEntries();
     }
 
 
-    public String getWeatherForecast() { // todo move to other service eg. WeatherService
 
-       return accuWeatherClient.getWeatherForecast();
-    }
 }
 
 

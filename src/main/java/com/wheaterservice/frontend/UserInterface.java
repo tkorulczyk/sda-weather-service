@@ -1,12 +1,17 @@
 package com.wheaterservice.frontend;
 
 import com.wheaterservice.backend.LocationController;
+import com.wheaterservice.backend.WeatherController;
+
 
 public class UserInterface {
 
 
-    private InputValidator inputValidator = new InputValidator();
+    private InputValidator inputValidator;
     private final LocationController locationController;
+    private WeatherController weatherController;
+
+
 
     private final String CLOSED_APP_MESSAGE = "\nThank you for your time! \n" + "Good bye!";
     private final String PROVIDE_LOCATION_NAME = "Please provide location name";
@@ -24,11 +29,24 @@ public class UserInterface {
             Color.RED + "4 => Close the application \n" + Color.RESET +
             Color.RESET + "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ";
 
-    public UserInterface(LocationController locationController) {
+    private final String WEATHER_LANGUAGE_MESSAGE = "\n" +
+            "========================================================== \n" +
+            "In which language would you like to display the weather forecast message? \n" +
+            "========================================================== \n" + "\n" +
+           "1 => English \n" +
+            "2 => Polish (język polski) \n" +
+            Color.RESET + "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ";
+
+
+    public UserInterface(InputValidator inputValidator, LocationController locationController, WeatherController weatherController) {
+        this.inputValidator = inputValidator;
         this.locationController = locationController;
+        this.weatherController = weatherController;
     }
 
     void showInitialMenu() {
+
+
         while (true) {
             System.out.println(INVITATION_MESSAGE);
             int userInput = inputValidator.retrievesInteger();
@@ -72,14 +90,30 @@ public class UserInterface {
     }
 
     private void obtainWeatherForecast() {
-       // showWeatherForecastMenu();
-        String obtainWeatherLocation = locationController.getWeatherForecast();
+        showWeatherForecastMenu();
+        String obtainWeatherLocation = weatherController.getWeatherForecast();
         System.out.println();
         System.out.println(obtainWeatherLocation);
     }
 
 
-//    private void showWeatherForecastMenu() {
+    private void showWeatherForecastMenu() {
+        System.out.println(WEATHER_LANGUAGE_MESSAGE);
+        int userInput2 = inputValidator.retrievesInteger();
+
+        switch (userInput2) {
+            case 1:
+                weatherController.setWeatherMessageLanguage("en-us");
+                break;
+            case 2:
+                weatherController.setWeatherMessageLanguage("pl");
+                break;
+        }
+    }
+
+}
+
+
 //            System.out.println(PROVIDE_LOCATION_NAME);
 //           // String locationName = inputValidator.retrievesString();
 //            System.out.println("Provide language");
@@ -87,6 +121,6 @@ public class UserInterface {
 //            System.out.println("Provide weather time range unit");
 //            String longitude = inputValidator.retrievesString();
 //            System.out.println();
-//   //         String weatherEntry = locationController.createNewLocation(locationName, latitude,longitude);
+//         String weatherEntry = locationController.createNewLocation(locationName, latitude,longitude);
 
-}
+

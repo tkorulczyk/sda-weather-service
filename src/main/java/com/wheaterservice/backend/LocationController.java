@@ -5,10 +5,13 @@ import java.util.List;
 public class LocationController {
 
     private final LocationService locationService;
+    private final WeatherService weatherService;
 
-    public LocationController(LocationService locationService) {
+    public LocationController(LocationService locationService, WeatherService weatherService) {
         this.locationService = locationService;
+        this.weatherService = weatherService;
     }
+
 
     public String createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) {
         Location newLocation = locationService.createNewLocation(countryName, regionName, cityName, latitude, longitude);
@@ -20,7 +23,4 @@ public class LocationController {
         return locations.toString();
     }
 
-    public String getWeatherForecast() {    // todo move to other controller eg. WeatherController
-        return locationService.getWeatherForecast();
-    }
 }
