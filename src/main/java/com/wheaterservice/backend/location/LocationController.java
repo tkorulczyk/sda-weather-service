@@ -1,4 +1,6 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
+
+import com.wheaterservice.backend.weather.WeatherService;
 
 import java.util.List;
 
@@ -6,6 +8,7 @@ public class LocationController {
 
     private final LocationService locationService;
     private final WeatherService weatherService;
+    private Location newLocation;
 
     public LocationController(LocationService locationService, WeatherService weatherService) {
         this.locationService = locationService;
@@ -14,7 +17,13 @@ public class LocationController {
 
 
     public String createNewLocation(String countryName, String regionName, String cityName, String latitude, String longitude) {
-        Location newLocation = locationService.createNewLocation(countryName, regionName, cityName, latitude, longitude);
+      try {
+          newLocation = locationService.createNewLocation(countryName, regionName, cityName, latitude, longitude);
+      } catch (IllegalArgumentException e) {
+          return ("An error occurred while trying to add a new location" + e.getMessage());
+      }
+
+
         return newLocation.toString();
     }
 

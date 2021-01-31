@@ -1,5 +1,6 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
 
+import com.wheaterservice.backend.HibernateUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

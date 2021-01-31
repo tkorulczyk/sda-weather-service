@@ -1,5 +1,9 @@
 package com.wheaterservice.frontend;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -7,6 +11,7 @@ public class InputValidator {
 
     private Scanner scanner = new Scanner(System.in);
     private final String WARNING_ONLY_LETTERS = Color.RED + ">>> Please type letter only with first being Capital! <<<" + Color.RESET;
+    private final String WARNING_LANGUAGE = Color.RED + ">>> Please type only two letters representing language <<<" + Color.RESET;
     private final String WARNING_COORDINATE_WITHIN_RANGE = Color.RED + ">>> Please type a number from -90 to 90! <<<" + Color.RESET;
 
     int retrievesInteger() {
@@ -48,7 +53,35 @@ public class InputValidator {
             } else {
                 System.out.println(WARNING_ONLY_LETTERS);
             }
+        }
+    }
 
+    String retrieveAndValidateDate() {
+        while (true) {
+            String date = scanner.next();
+            String properFormattedDate = date.replace('.', '-');
+            properFormattedDate = properFormattedDate.replace('/', '-');
+            if (properFormattedDate.matches("[0-9]{1,2}-[0-9]{1,2}-[0-9]{4}")) {
+                return date;
+            } else {
+                System.out.println(WARNING_ONLY_LETTERS);
+            }
+        }
+    }
+
+    String retrieveAndValidateLanguage() {
+        while (true) {
+            String language = scanner.next();
+            if (language.toLowerCase().contains("en")) {
+                return "en";
+            } else if (language.toLowerCase().contains("pl")) {
+                return "pl";
+            } else
+                System.out.println(WARNING_LANGUAGE);
         }
     }
 }
+
+
+
+

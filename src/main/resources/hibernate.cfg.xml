@@ -9,6 +9,6 @@
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
         <property name="use.sql_comments">true</property>
-        <mapping class ="com.wheaterservice.backend.Location" />
+        <mapping class ="com.wheaterservice.backend.location.Location" />
     </session-factory>
 </hibernate-configuration>

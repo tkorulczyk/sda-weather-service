@@ -1,4 +1,4 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
 
 public class DatabaseInputValidator {
 
@@ -29,9 +29,18 @@ public class DatabaseInputValidator {
         return false;
     }
 
-    boolean isNotCoordinateMatchesRegexPattern(String... args) {
+    boolean isNotLatitudeMatchesRegexPattern(String... args) {
         for (String arg : args) {
             if (!arg.matches("-?[0-9]?[0-9]([,.][0-9]{0,4})?")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    boolean isNotLongitudeMatchesRegexPattern(String... args) {
+        for (String arg : args) {
+            if (!arg.matches("-?[0-9]?[0-9]?[0-9]([,.][0-9]{0,4})?")) {
                 return true;
             }
         }
@@ -42,7 +51,5 @@ public class DatabaseInputValidator {
         String stringWithReplacedComma = string.replace(',', '.');
         return Float.parseFloat(stringWithReplacedComma);
     }
+
 }
-
-
-

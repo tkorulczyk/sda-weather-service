@@ -1,4 +1,4 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
 
 import java.util.List;
 
@@ -22,12 +22,14 @@ public class LocationService {
             throw new IllegalArgumentException("Name of Country, Region and City cannot be empty");
         }
 
-        if (dbValidator.isNotLocationMatchesRegexPattern()) {
+        if (dbValidator.isNotLocationMatchesRegexPattern(cityName, regionName, cityName)) {
             throw new IllegalArgumentException("Name of Country, Region and City should be only letters");
+        } else {
+            convertToTitleCaseIteratingChars(cityName, regionName, cityName);
         }
 
         float flatitude = 0f;
-        if (dbValidator.isNotCoordinateMatchesRegexPattern(latitude)) {
+        if (dbValidator.isNotLatitudeMatchesRegexPattern(latitude)) {
             flatitude = dbValidator.parseStringToFloat(latitude);
             if (flatitude < -90 || flatitude > 90) {
                 throw new IllegalArgumentException("Latitude value exceeded accepted range");
@@ -35,9 +37,9 @@ public class LocationService {
         }
 
         float flongitude = 0f;
-        if (dbValidator.isNotCoordinateMatchesRegexPattern(longitude)) {
+        if (dbValidator.isNotLongitudeMatchesRegexPattern(longitude)) {
             flongitude = dbValidator.parseStringToFloat(latitude);
-            if (flongitude < -90 || flongitude > 90) {
+            if (flongitude < -180 || flongitude > 180) {
                 throw new IllegalArgumentException("Longitude value exceeded accepted range");
             }
         }
@@ -53,6 +55,27 @@ public class LocationService {
 
 
 
+    public String convertToTitleCaseIteratingChars(String... args) {
+         StringBuilder converted = new StringBuilder();
+
+        boolean convertNext = true;
+        for (int i = 0; i < args.length; i++) {
+            for (char ch : args[i].toCharArray()) {
+                if (Character.isSpaceChar(ch)) {
+                    convertNext = true;
+                } else if (convertNext) {
+                    ch = Character.toTitleCase(ch);
+                    convertNext = false;
+                } else {
+                    ch = Character.toLowerCase(ch);
+                }
+                converted.append(ch);
+            }
+
+
+        }
+        return args.toString();
+    }
 }
 
 

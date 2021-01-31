@@ -1,4 +1,4 @@
-package com.wheaterservice.backend.httpclients;
+package com.wheaterservice.backend.weather.httpclients;
 
 public class OpenWeatherMapClient {
     private String APIkey = "5b87947371d54e66566fe002328e146b";

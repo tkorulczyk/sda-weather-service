@@ -1,4 +1,4 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
 
 import java.util.List;
 

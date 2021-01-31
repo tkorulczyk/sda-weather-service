@@ -1,4 +1,4 @@
-package com.wheaterservice.backend.httpclients;
+package com.wheaterservice.backend.weather.httpclients;
 
 import java.net.URI;
 import java.net.http.HttpClient;

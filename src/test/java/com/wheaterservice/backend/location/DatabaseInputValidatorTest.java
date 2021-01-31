@@ -1,17 +1,17 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
 
+import com.wheaterservice.backend.location.DatabaseInputValidator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class DatabaseInputValidatorTest {
-    private DatabaseInputValidator databaseInputValidator;
+public class DatabaseInputValidatorTest {
+    private static DatabaseInputValidator databaseInputValidator;
 
-    @BeforeEach
-    void setUp() {
+    @BeforeAll
+    static void setUp() {
         databaseInputValidator = new DatabaseInputValidator();
     }
 
@@ -23,20 +23,20 @@ class DatabaseInputValidatorTest {
         // then
         // Assertions.assertNotNull(databaseInputValidator.isLocationParameterNull(str));
 
-        // todo
-        //  given - data preparation
-        //  then - perform an action
-        //  then - assertions
+//         todo
+//          given - data preparation
+//          then - perform an action
+//          then - assertions
 
         // given
-        String arg = null;
-
-        // when
-        boolean result = databaseInputValidator.isLocationParameterNull(arg);
-
-        // then
-        assertThat(result).isTrue();
-    }
+//        String arg = null;
+//
+//        // when
+//        boolean result = databaseInputValidator.isLocationParameterNull(arg);
+//
+//        // then
+//        assertThat(result).isTrue();
+   }
 
     @Test
     void thatLocationParameterIsBlank() { // todo isLocationParameterBlank_whenPassedParamContainsWhitespaces_returnsTrue
@@ -122,7 +122,7 @@ class DatabaseInputValidatorTest {
         // when
         String str = "dsdf";
         // then
-        Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLatitudeMatchesRegexPattern(str));
     }
 
     @Test
@@ -130,7 +130,7 @@ class DatabaseInputValidatorTest {
         // when
         String str = "342dsdf";
         // then
-        Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLongitudeMatchesRegexPattern(str));
     }
 
     @Test
@@ -138,7 +138,7 @@ class DatabaseInputValidatorTest {
         // when
         String str = "346.234";
         // then
-        Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLongitudeMatchesRegexPattern(str));
     }
 
 
@@ -147,7 +147,7 @@ class DatabaseInputValidatorTest {
         // when
         String str = "911";
         // then
-        Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLongitudeMatchesRegexPattern(str));
     }
 
     @Test
@@ -155,6 +155,6 @@ class DatabaseInputValidatorTest {
         // when
         String str = ".89";
         // then
-        Assertions.assertTrue(databaseInputValidator.isNotCoordinateMatchesRegexPattern(str));
+        Assertions.assertTrue(databaseInputValidator.isNotLongitudeMatchesRegexPattern(str));
     }
 }

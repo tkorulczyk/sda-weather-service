@@ -1,4 +1,7 @@
-package com.wheaterservice.backend;
+package com.wheaterservice.backend.location;
+
+import com.wheaterservice.backend.location.Location;
+import com.wheaterservice.backend.location.LocationRepository;
 
 import java.util.List;
 
