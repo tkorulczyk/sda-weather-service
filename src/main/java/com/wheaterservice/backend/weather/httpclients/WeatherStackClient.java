@@ -7,8 +7,33 @@ public class WeatherStackClient {
     private ObjectMapper objectMapper;
     private HttpClientConnector httpClientConnector;
     private String APIkey = "9d6b07b8fdc422737f0ca98fa0da4009";
-    private int timeRange = 14;
     private String language;
+    private int temperature;
+    private int WindSpeed;
+    private int WindDir;
+    private int pressure;
+    private int humidity;
+
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public int getWindSpeed() {
+        return WindSpeed;
+    }
+
+    public int getWindDir() {
+        return WindDir;
+    }
+
+    public int getPressure() {
+        return pressure;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
 
     public WeatherStackClient(ObjectMapper objectMapper, HttpClientConnector httpClientConnector) {
         this.objectMapper = objectMapper;
@@ -23,25 +48,50 @@ public class WeatherStackClient {
         try {
             WeatherStackDTO weatherStackDTO = objectMapper.readValue(responseBody, WeatherStackDTO.class);
             int temperature = weatherStackDTO.getCurrent().getTemperature();
-            int wind_speed = weatherStackDTO.getCurrent().getWind_speed();
-            String wind_dir = weatherStackDTO.getCurrent().getWind_dir();
+            int WindSpeed = weatherStackDTO.getCurrent().getWind_speed();
+            int WindDir = weatherStackDTO.getCurrent().getDegrees();
             int pressure = weatherStackDTO.getCurrent().getPressure();
             int humidity = weatherStackDTO.getCurrent().getHumidity();
+            String weatherDescription = weatherStackDTO.getCurrent().getWeather_descriptions()
+                    .toString().replace("]","").replace("[","");
+
+            this.temperature = temperature;
+            this.WindSpeed = WindSpeed;
+            this.WindDir = WindDir;
+            this.pressure = pressure;
+            this.humidity = humidity;
+
 
             String arrow = null;
-            if (wind_dir.equals("N")) {arrow = "↑";}
-            if (wind_dir.equals("E")) {arrow = "→";}
-            if (wind_dir.equals("S")) {arrow = "↓";}
-            if (wind_dir.equals("W")) {arrow = "←";}
-            if (wind_dir.contains("NE")) {arrow = "↗";}
-            if (wind_dir.contains("SE")) {arrow = "↘";}
-            if (wind_dir.contains("SW")) {arrow = "↙";}
-            if (wind_dir.contains("NW")) {arrow = "↖";}
+            if (WindDir >= 337.5 && WindDir <= 22.5) {
+                arrow = "↑";
+            }
+            if (WindDir >= 67.5 && WindDir <= 112.5) {
+                arrow = "→";
+            }
+            if (WindDir >= 157.5 && WindDir <= 202.5) {
+                arrow = "↓";
+            }
+            if (WindDir >= 247.5 && WindDir <= 292.5) {
+                arrow = "←";
+            }
+            if (WindDir > 22.5 && WindDir < 67.5) {
+                arrow = "↗";
+            }
+            if (WindDir > 112.5 && WindDir < 157.5) {
+                arrow = "↘";
+            }
+            if (WindDir > 202.5 && WindDir < 247.5) {
+                arrow = "↙";
+            }
+            if (WindDir > 292.5 && WindDir < 337.5) {
+                arrow = "↖";
+            }
 
             String forecastMessage = String.format("\nCurrent weather metrics for %s are \n" +
                             "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ " +
-                            "\n temperature: %s,\n pressure: %s,\n humidity: %s,\n wind speed: %s,\n wind direction: %s %s",
-                    cityName.toUpperCase(), temperature, pressure, humidity, wind_speed, wind_dir, arrow);
+                            "\n temperature: %s,\n pressure: %s,\n humidity: %s,\n wind speed: %s,\n wind direction: %s %s,\n weather description: %s",
+                    cityName.toUpperCase(), temperature, pressure, humidity, WindSpeed, WindDir, arrow, weatherDescription);
 
             return forecastMessage;
 

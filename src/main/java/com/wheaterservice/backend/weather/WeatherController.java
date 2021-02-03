@@ -17,8 +17,8 @@ private WeatherService weatherService;
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date = LocalDate.parse(weatherDate,dateTimeFormatter);
 
-
-    //    return weatherService.getAccuWeatherForecast(language, date, cityName);
+      //  return weatherService.getOpenWeatherMapForecast(cityName);
+      //  return weatherService.getAccuWeatherForecast(language, date, cityName);
         return weatherService.getWeatherStackForecast(language, date, cityName);
     }
 }

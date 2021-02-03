@@ -2,6 +2,7 @@ package com.wheaterservice.frontend;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wheaterservice.backend.weather.WeatherRepository;
 import com.wheaterservice.backend.weather.httpclients.*;
 import com.wheaterservice.backend.location.DatabaseInputValidator;
 import com.wheaterservice.backend.location.LocationController;
@@ -22,10 +23,13 @@ public class Main {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         LocationKeyDTO locationKeyDTO = new LocationKeyDTO();
-        WeatherParamDTO weatherParamDTO = new WeatherParamDTO();
+        AccuWeatherDTO accuWeatherDTO = new AccuWeatherDTO();
+        OpenWeatherMapDTO openWeatherMapDTO = new OpenWeatherMapDTO();
+        WeatherRepository weatherRepository = new WeatherRepository();
+        OpenWeatherMapClient openWeatherMapClient = new OpenWeatherMapClient(objectMapper, httpClientConnector, openWeatherMapDTO);
         WeatherStackClient weatherStackClient = new WeatherStackClient(objectMapper, httpClientConnector);
-        AccuWeatherClient accuWeatherClient = new AccuWeatherClient(objectMapper, httpClientConnector,locationKeyDTO, weatherParamDTO);
-        WeatherService weatherService = new WeatherService(accuWeatherClient, weatherStackClient);
+        AccuWeatherClient accuWeatherClient = new AccuWeatherClient(objectMapper, httpClientConnector,locationKeyDTO, accuWeatherDTO);
+        WeatherService weatherService = new WeatherService(accuWeatherClient, weatherStackClient, openWeatherMapClient,weatherRepository);
         LocationController locationController = new LocationController(locationService, weatherService);
         WeatherController weatherController = new WeatherController(weatherService);
         UserInterface userInterface = new UserInterface(inputValidator, locationController, weatherController);
