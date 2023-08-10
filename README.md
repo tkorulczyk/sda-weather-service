@@ -1,25 +1,25 @@
-# SDA WeatherService
+# SDA Weather Service
 WeatherService is an application that allows you to get the current weather forecast for a selected city. It uses external APIs to fetch weather data and stores it locally in a database to improve performance and reduce the number of API calls.
 
 
-## Funkcje
+## Features
 - Searching for the weather forecast for a selected city
 - Storing weather forecasts in a database
 - The user can display the latest forecasts for a given city stored in the database
 
-## Instalacja
-### Wymagania
+## Installation
+### Requirements
 - Java 11+
 - Maven
 - H2 Database
 
-### Instrukcja
+### Instructions
 Clone the repository:
 ```bash
 git clone https://github.com/tkorulczyk/sda-weatherservice.git
 ```
 
-## Przejdź do katalogu z projektem:
+## Navigate to the directory with the project:
 
 bash
 Copy code
@@ -37,7 +37,7 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Używanie
+## Usage
 After launching the application, you can get the weather forecast for any city by typing the city name into the user interface.
 
 ## API
@@ -54,7 +54,7 @@ api.openweather.key=YOUR_OPENWEATHER_API_KEY
 api.weatherstack.key=YOUR_WEATHERSTACK_API_KEY
 ```
 
-## Model danych
+## Data model
 The application stores weather forecasts in an H2 database. A weather forecast consists of the following elements:
 
 ID: Unique identifier of the forecast
@@ -67,7 +67,7 @@ Pressure: Current atmospheric pressure
 Humidity: Current air humidity
 Weather description: A short description of the current weather
 
-## Testy
+## Tests
 The application includes a set of unit and integration tests. They can be run using the Maven command:
 ### bash
 Copy code
@@ -75,8 +75,8 @@ Copy code
 mvn test
 ```
 
-## Wkład
+## Contribution
 If you want to contribute to the development of this project, clone the repository, create a new branch, add your changes, and submit a Pull Request. All ideas and suggestions are welcome!
 
-## Licencja
+## License
 This project is released under the MIT license. Detailed information can be found in the LICENSE file.
