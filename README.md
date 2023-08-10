@@ -1,7 +1,7 @@
 # SDA Weather Service
 WeatherService is a Java application designed to provide the current weather forecast for a specified city. It efficiently fetches weather data from external APIs and caches the results in a local database, enhancing performance and minimizing redundant API calls.
 
-![AI Generated Lighting](\src\project_desc\img/ai-generated-7922513_1280.jpg?raw=true "AI Generated Lighting")
+![AI Generated Lighting](src/project_desc/img/ai-generated-7922513_1280.jpg?raw=true "AI Generated Lighting")
 
 ## Key Features:
 
