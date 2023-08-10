@@ -1,11 +1,18 @@
 # SDA Weather Service
-WeatherService is an application that allows you to get the current weather forecast for a selected city. It uses external APIs to fetch weather data and stores it locally in a database to improve performance and reduce the number of API calls.
+WeatherService is a Java application designed to provide the current weather forecast for a specified city. It efficiently fetches weather data from external APIs and caches the results in a local database, enhancing performance and minimizing redundant API calls.
 
+![AI Generated Lighting](\src\project_desc\img/ai-generated-7922513_1280.jpg?raw=true "AI Generated Lighting")
 
-## Features
-- Searching for the weather forecast for a selected city
-- Storing weather forecasts in a database
-- The user can display the latest forecasts for a given city stored in the database
+## Key Features:
+
+Weather Data Retrieval: Utilizing the Weather Stack API, users can acquire weather information based on their specific inputs, like location, and the desired date for weather data (either current forecast or historical data).
+
+Local Caching: For improved performance and reduced API dependency, fetched weather details can be saved to an in-memory H2 database.
+
+ChatGPT Integration: In its latest update, WeatherService has integrated ChatGPT to offer recommendations on suitable attire and potential outdoor activities based on the acquired weather information.
+
+## Background:
+This project was crafted as part of the Java Fundamentals course provided by the Software Development Academy. It has been structured adhering to the clean architecture principles to ensure maintainability and scalability.
 
 ## Installation
 ### Requirements
