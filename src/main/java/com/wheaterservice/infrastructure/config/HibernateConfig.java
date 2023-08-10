@@ -1,11 +1,5 @@
 package com.wheaterservice.infrastructure.config;
 
-/**
- * Created on 26.07.2023
- *
- * @author Tomasz Korulczyk
- */
-
 import com.wheaterservice.domain.entities.Weather;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -21,9 +15,42 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Created on 26.07.2023
+ *
+ * @author Tomasz Korulczyk
+ */
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HibernateConfig {
   private static SessionFactory sessionFactory;
+
+  private static final String BASE_CONFIG_FILE = "application.yaml";
+  private static String CONFIG_FILE;
+
+  static {
+    // Uzyskanie wartości spring.profiles.active z pliku application.yaml
+    Yaml yaml = new Yaml();
+    InputStream inputStream = HibernateConfig.class.getClassLoader().getResourceAsStream(BASE_CONFIG_FILE);
+    if (inputStream == null) {
+      throw new RuntimeException("Failed to load file " + BASE_CONFIG_FILE);
+    }
+
+    Map<String, Object> obj = yaml.load(inputStream);
+
+    Object appObj = obj.get("app");
+    if (appObj instanceof Map) {
+
+      @SuppressWarnings("unchecked")
+      Map<String, Object> appMap = (Map<String, Object>) appObj;
+      String profile = (String) appMap.get("profiles.active");
+      CONFIG_FILE = "application-" + profile + ".yaml";
+
+    } else {
+      throw new RuntimeException("Incorrect configuration structure: 'app' should be map.");
+    }
+
+  }
 
   public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {
@@ -31,11 +58,10 @@ public class HibernateConfig {
         Yaml yaml = new Yaml();
         InputStream inputStream = HibernateConfig.class
             .getClassLoader()
-            .getResourceAsStream("application-dev.yaml");
+            .getResourceAsStream(CONFIG_FILE);
 
         if (inputStream == null) {
-          System.out.println("Nie udało się załadować pliku konfiguracyjnego");
-          return null;
+          throw new RuntimeException("Failed to load file " + CONFIG_FILE);
         }
 
         Map<String, Object> yamlProps = yaml.load(inputStream);
@@ -62,7 +88,7 @@ public class HibernateConfig {
           if (entry.getValue() != null) {
             props.put(entry.getKey(), entry.getValue());
           } else {
-            System.out.println("Wartość dla klucza: " + entry.getKey() + " jest null");
+            System.out.println("The value for the key: " + entry.getKey() + " is null");
           }
         }
 

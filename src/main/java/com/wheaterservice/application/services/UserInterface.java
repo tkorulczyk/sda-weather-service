@@ -4,15 +4,17 @@ import com.wheaterservice.application.interfaces.inbound.WeatherController;
 import com.wheaterservice.application.utils.Color;
 import com.wheaterservice.application.utils.InputValidator;
 import com.wheaterservice.domain.entities.Weather;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
 import java.util.Objects;
 
-
+@AllArgsConstructor
 public class UserInterface {
 
     private InputValidator inputValidator;
     private WeatherController weatherController;
+    private ChatGPTService chatGPTService;
 
     private static final String CLOSED_APP_MESSAGE = "\nThank you for your time! \n" + "Good bye!";
     private static final String PROVIDE_LOCATION_NAME = "Please provide location name";
@@ -35,11 +37,6 @@ public class UserInterface {
         "Please type a specific date you would like to get forecast \n" +
         "Recommended date format: DD-MM-RRRR \n" +
         Color.RESET.get() + "↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ";
-
-    public UserInterface(InputValidator inputValidator,  WeatherController weatherController) {
-        this.inputValidator = inputValidator;
-        this.weatherController = weatherController;
-    }
 
     public void showInitialMenu() {
         while (true) {
@@ -106,6 +103,14 @@ public class UserInterface {
         Weather weatherForecast = weatherController.getWeatherForecast(weatherRecordTypeChoice, weatherDate, locationName);
         if(Objects.nonNull(weatherForecast)) {
             System.out.println(weatherForecast);
+            System.out.println("\nWould you like to get dress and activity recommendation? Type Y / N");
+            String recommendationValue = inputValidator.retrieveAndValidateLetter("[YN]{1}");
+
+            if (Objects.nonNull(recommendationValue) && "Y".equalsIgnoreCase(recommendationValue)) {
+                final String weatherRecommendation = chatGPTService.getWeatherRecommendation(weatherForecast.toString());
+                System.out.println(weatherRecommendation);
+            }
+
             System.out.println("\nWould you like to save the weather forecast? Type Y / N");
             String saveValue = inputValidator.retrieveAndValidateLetter("[YN]{1}");
             weatherController.saveWeatherForecast(weatherForecast, saveValue);
